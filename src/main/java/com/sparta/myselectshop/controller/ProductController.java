@@ -42,4 +42,11 @@ public class ProductController {
 
     }
 
+    @PostMapping("/products/{productId}/folder")
+    public void addFoler(@PathVariable Long productId,
+                         @RequestParam("folderId") Long folderId,
+                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        productService.addFoler(productId,folderId,userDetails.getUser());
+    }
+
 }
