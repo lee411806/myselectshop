@@ -1,5 +1,6 @@
 package com.sparta.myselectshop.entity;
 
+import com.sparta.myselectshop.dto.FolderResponseDto;
 import com.sparta.myselectshop.dto.ProductMypriceRequestDto;
 import com.sparta.myselectshop.dto.ProductRequestDto;
 import com.sparta.myselectshop.naver.dto.ItemDto;
@@ -36,6 +37,9 @@ public class Product extends Timestamped {
 
     @Column(nullable = false)
     private int myprice;
+
+
+
 
     // 테이블 다대일 관계
     // fetch type은 물품에서 회원정보다 꼭 필요한게 아님으로 Lazy
