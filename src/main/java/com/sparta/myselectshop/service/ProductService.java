@@ -41,7 +41,7 @@ public class ProductService {
     public ProductResponseDto updateProduct(Long id, ProductMypriceRequestDto requestDto) {
         int myprice = requestDto.getMyprice();
         if (myprice < MIN_MY_PRICE) {
-            throw new IllegalArgumentException("유효하지 않은 관심 가격 입니다. 최소 + " + MIN_MY_PRICE + "원 이상으로 설정해 주세요.");
+            throw new IllegalArgumentException("유효하지 않은 관심 가격입니다. 최소 " +MIN_MY_PRICE+ "원 이상으로 설정해 주세요.");
         }
 
         Product product = productRepository.findById(id).orElseThrow(() ->
@@ -101,7 +101,7 @@ public class ProductService {
 
         Optional<ProductFolder> overlapFolder = productFolderRepository.findByProductAndFolder(product, folder);
 
-        if(overlapFolder.isPresent()){
+        if (overlapFolder.isPresent()) {
             throw new IllegalArgumentException("중복된 폴더입니다.");
         }
 
@@ -118,7 +118,7 @@ public class ProductService {
         //페이징 처리 하기위한 클래스에 정렬객체 넣어줌
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        Page<Product> productList  = productRepository.findAllByUserAndProductFolderList_FolderId(user, folderId,pageable);
+        Page<Product> productList = productRepository.findAllByUserAndProductFolderList_FolderId(user, folderId, pageable);
 
         Page<ProductResponseDto> responseDtoList = productList.map(ProductResponseDto::new);
 
